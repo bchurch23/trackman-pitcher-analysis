@@ -1,0 +1,783 @@
+---
+title: "CCBL"
+author: "Ben Church"
+date: "2024-07-12"
+output: html_document
+---
+
+```{r}
+rm(list=ls())
+setwd("/Users/benchurch/Downloads/Trackman CSVs")
+
+library(shiny)
+library(baseballr)
+library(dplyr)
+library(ggplot2)
+library(magrittr)
+library(kableExtra)
+library(data.table)
+library(httr)
+library(gridExtra)
+library(lubridate)
+```
+
+```{r}
+june_16_1 <- read.csv("6_16_1.csv")
+june_16_2 <- read.csv("6_16_2.csv")
+june_16_3 <- read.csv("6_16_3.csv")
+june_16_4 <- read.csv("6_16_4.csv")
+june_16_5 <- read.csv("6_16_5.csv")
+
+june_17_1 <- read.csv("6_17_1.csv")
+june_17_2 <- read.csv("6_17_2.csv")
+june_17_3 <- read.csv("6_17_3.csv")
+june_17_4 <- read.csv("6_17_4.csv")
+june_17_5 <- read.csv("6_17_5.csv")
+
+june_18_1 <- read.csv("6_18_1.csv")
+june_18_2 <- read.csv("6_18_2.csv")
+june_18_3 <- read.csv("6_18_3.csv")
+june_18_4 <- read.csv("6_18_4.csv")
+june_18_5 <- read.csv("6_18_5.csv")
+
+june_20_1 <- read.csv("6_20_1.csv")
+june_20_2 <- read.csv("6_20_2.csv")
+june_20_3 <- read.csv("6_20_3.csv")
+june_20_4 <- read.csv("6_20_4.csv")
+june_20_5 <- read.csv("6_20_5.csv")
+
+june_21_1 <- read.csv("6_21_1.csv")
+june_21_2 <- read.csv("6_21_2.csv")
+june_21_3 <- read.csv("6_21_3.csv")
+june_21_4 <- read.csv("6_21_4.csv")
+june_21_5 <- read.csv("6_21_5.csv")
+
+june_22_1 <- read.csv("6_22_1.csv")
+june_22_2 <- read.csv("6_22_2.csv")
+june_22_3 <- read.csv("6_22_3.csv")
+june_22_4 <- read.csv("6_22_4.csv")
+june_22_5 <- read.csv("6_22_5.csv")
+
+june_23_1 <- read.csv("6_23_1.csv")
+june_23_2 <- read.csv("6_23_2.csv")
+june_23_3 <- read.csv("6_23_3.csv")
+june_23_4 <- read.csv("6_23_4.csv")
+june_23_5 <- read.csv("6_23_5.csv")
+
+june_24_1 <- read.csv("6_24_1.csv")
+june_24_2 <- read.csv("6_24_2.csv")
+june_24_3 <- read.csv("6_24_3.csv")
+
+june_25_1 <- read.csv("6_25_1.csv")
+june_25_2 <- read.csv("6_25_2.csv")
+june_25_3 <- read.csv("6_25_3.csv")
+
+june_26_1 <- read.csv("6_26_1.csv")
+june_26_2 <- read.csv("6_26_2.csv")
+june_26_3 <- read.csv("6_26_3.csv")
+june_26_4 <- read.csv("6_26_4.csv")
+
+june_27_1 <- read.csv("6_27_1.csv")
+june_27_2 <- read.csv("6_27_2.csv")
+june_27_3 <- read.csv("6_27_3.csv")
+june_27_4 <- read.csv("6_27_4.csv")
+june_27_5 <- read.csv("6_27_5.csv")
+
+june_28_1 <- read.csv("6_28_1.csv")
+june_28_2 <- read.csv("6_28_2.csv")
+june_28_3 <- read.csv("6_28_3.csv")
+june_28_4 <- read.csv("6_28_4.csv")
+june_28_5 <- read.csv("6_28_5.csv")
+
+june_29_1 <- read.csv("6_28_1.csv")
+june_29_2 <- read.csv("6_28_2.csv")
+june_29_3 <- read.csv("6_28_3.csv")
+june_29_4 <- read.csv("6_28_4.csv")
+june_29_5 <- read.csv("6_28_5.csv")
+
+july_2_1 <- read.csv("7_02_1.csv")
+july_2_2 <- read.csv("7_02_2.csv")
+july_2_3 <- read.csv("7_02_3.csv")
+july_2_4 <- read.csv("7_02_4.csv")
+july_2_5 <- read.csv("7_02_5.csv")
+
+july_3_1 <- read.csv("7_03_1.csv")
+july_3_2 <- read.csv("7_03_2.csv")
+july_3_3 <- read.csv("7_03_3.csv")
+july_3_4 <- read.csv("7_03_4.csv")
+july_3_5 <- read.csv("7_03_5.csv")
+
+july_4_1 <- read.csv("7_04_1.csv")
+july_4_2 <- read.csv("7_04_2.csv")
+july_4_3 <- read.csv("7_04_3.csv")
+july_4_4 <- read.csv("7_04_4.csv")
+july_4_5 <- read.csv("7_04_5.csv")
+
+july_5_1 <- read.csv("7_05_1.csv")
+july_5_2 <- read.csv("7_05_2.csv")
+july_5_3 <- read.csv("7_05_3.csv")
+july_5_4 <- read.csv("7_05_4.csv")
+july_5_5 <- read.csv("7_05_5.csv")
+
+july_6_1 <- read.csv("7_06_1.csv")
+july_6_2 <- read.csv("7_06_2.csv")
+july_6_3 <- read.csv("7_06_3.csv")
+july_6_4 <- read.csv("7_06_4.csv")
+july_6_5 <- read.csv("7_06_5.csv")
+
+july_7_1 <- read.csv("7_07_1.csv")
+july_7_2 <- read.csv("7_07_2.csv")
+july_7_3 <- read.csv("7_07_3.csv")
+july_7_4 <- read.csv("7_07_4.csv")
+july_7_5 <- read.csv("7_07_5.csv")
+
+july_8_1 <- read.csv("7_08_1.csv")
+july_8_2 <- read.csv("7_08_2.csv")
+
+july_9_1 <- read.csv("7_09_1.csv")
+july_9_2 <- read.csv("7_09_2.csv")
+july_9_3 <- read.csv("7_09_3.csv")
+
+july_10_1 <- read.csv("7_10_1.csv")
+july_10_2 <- read.csv("7_10_2.csv")
+july_10_3 <- read.csv("7_10_3.csv")
+july_10_4 <- read.csv("7_10_4.csv")
+july_10_5 <- read.csv("7_10_5.csv")
+
+july_11_1 <- read.csv("7_11_1.csv")
+july_11_2 <- read.csv("7_11_2.csv")
+july_11_3 <- read.csv("7_11_3.csv")
+july_11_4 <- read.csv("7_11_4.csv")
+
+```
+
+```{r}
+# List of file names
+file_names <- c("6_16_1.csv", "6_16_2.csv", "6_16_3.csv", "6_16_4.csv", "6_16_5.csv",
+                "6_17_1.csv", "6_17_2.csv", "6_17_3.csv", "6_17_4.csv", "6_17_5.csv",
+                "6_18_1.csv", "6_18_2.csv", "6_18_3.csv", "6_18_4.csv", "6_18_5.csv",
+                "6_20_1.csv", "6_20_2.csv", "6_20_3.csv", "6_20_4.csv", "6_20_5.csv",
+                "6_21_1.csv", "6_21_2.csv", "6_21_3.csv", "6_21_4.csv", "6_21_5.csv",
+                "6_22_1.csv", "6_22_2.csv", "6_22_3.csv", "6_22_4.csv", "6_22_5.csv",
+                "6_23_1.csv", "6_23_2.csv", "6_23_3.csv", "6_23_4.csv", "6_23_5.csv",
+                "6_24_1.csv", "6_24_2.csv", "6_24_3.csv",
+                "6_25_1.csv", "6_25_2.csv", "6_25_3.csv",
+                "6_26_1.csv", "6_26_2.csv", "6_26_3.csv", "6_26_4.csv",
+                "6_27_1.csv", "6_27_2.csv", "6_27_3.csv", "6_27_4.csv", "6_27_5.csv",
+                "6_28_1.csv", "6_28_2.csv", "6_28_3.csv", "6_28_4.csv", "6_28_5.csv",
+                "6_29_1.csv", "6_29_2.csv", "6_29_3.csv", "6_29_4.csv", "6_29_5.csv",
+                "7_02_1.csv", "7_02_2.csv", "7_02_3.csv", "7_02_4.csv", "7_02_5.csv",
+                "7_03_1.csv", "7_03_2.csv", "7_03_3.csv", "7_03_4.csv", "7_03_5.csv",
+                "7_04_1.csv", "7_04_2.csv", "7_04_3.csv", "7_04_4.csv", "7_04_5.csv",
+                "7_05_1.csv", "7_05_2.csv", "7_05_3.csv", "7_05_4.csv", "7_05_5.csv",
+                "7_06_1.csv", "7_06_2.csv", "7_06_3.csv", "7_06_4.csv", "7_06_5.csv",
+                "7_07_1.csv", "7_07_2.csv", "7_07_3.csv", "7_07_4.csv", "7_07_5.csv",
+                "7_08_1.csv", "7_08_2.csv",
+                "7_09_1.csv", "7_09_2.csv", "7_09_3.csv",
+                "7_10_1.csv", "7_10_2.csv", "7_10_3.csv", "7_10_4.csv", "7_10_5.csv",
+               "7_11_1.csv", "7_11_2.csv", "7_11_3.csv", "7_11_4.csv" )
+
+# Read and combine all CSV files into one data frame
+combined_data <- do.call(rbind, lapply(file_names, read.csv, stringsAsFactors = FALSE))
+
+# Write the combined data to a new CSV file
+write.csv(combined_data, "all_ccbl_data.csv", row.names = FALSE)
+
+```
+
+```{r}
+unique(combined_data$PitchCall)
+```
+
+
+```{r}
+combined_data <- combined_data %>%
+  mutate(
+      TaggedPitchType = case_when(
+        TaggedPitchType %in% c("FourSeamFastBall", "Fastball", "TwoSeamFastBall", "Sinker") ~ "Fastball",
+        TaggedPitchType %in% c("TwoSeamFastBall", "Sinker") ~ "Sinker",
+        TaggedPitchType %in% c("Slider") ~ "Slider",
+        TaggedPitchType %in% c("Cutter") ~ "Cutter",
+        TaggedPitchType %in% c("Curveball") ~ "Curveball",
+        TaggedPitchType %in% c("ChangeUp") ~ "ChangeUp",
+        TaggedPitchType %in% c("Splitter") ~ "Splitter",
+        TaggedPitchType %in% c("Undefined") ~ NA,
+        TRUE ~ TaggedPitchType
+      )
+    )
+```
+
+
+```{r}
+
+# Combine some of them into broader categories
+combined_data <- combined_data %>%
+  mutate(PitchCategory = case_when(
+    PitchCall %in% c("FoulBallNotFieldable", "StrikeSwinging") ~ "Strike",
+    PitchCall %in% c("StrikeCalled") ~ "Strike Called",
+    PitchCall %in% c("BallCalled", "Ballcalled", "BallinDirt", "HitByPitch", "BallIntentional") ~ "Ball",
+    PitchCall %in% c("FoulBallFieldable", "InPlay") ~ "In Play",
+    TRUE ~ "Other"
+  ))
+
+```
+
+```{r}
+pitch_colors_ccbl <- c(
+                  "Sinker" = "cyan",
+                  "Cutter" = "violet",
+                  "Fastball" = "blue",
+                  "Curveball" = "green",
+                  "Slider" = "orange",
+                  "ChangeUp" = "red",
+                  "Splitter" = "yellow")
+```
+
+
+```{r}
+left <- -.947
+right <- .947
+bottom <- 1.33
+top <- 3.5
+
+Width <- (right - left) / 3
+Height <- (top - bottom) / 3
+
+colors <- colorRampPalette(c("white", "blue", "white", "red"))(10)
+```
+
+
+
+```{r}
+ui <- fluidPage(
+  titlePanel("Pitcher Analysis"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("pitcher", "Select Pitcher:", choices = NULL),
+      selectInput("pitch_type", "Select Pitch Type:", choices = NULL, selected = "All"),
+      selectInput("batter_side", "Select Batter Side:", choices = c("All", "Left", "Right"), selected = "All"),
+       dateRangeInput("date_range", "Select Date Range:")
+    ),
+    mainPanel(
+      tabsetPanel(
+        tabPanel("Heat Map", plotOutput("chart1", height = "600px", width = "600px")),
+        tabPanel("Hit Chart", plotOutput("chart2", height = "475px", width = "700px")),
+        tabPanel("Pitch Breaks", plotOutput("chart3", height = "575px", width = "800px")),
+        tabPanel("Release Points", plotOutput("chart4", height = "475px", width = "700px")),
+        tabPanel("Pitch Velos", plotOutput("chart5", height = "500px", width = "800px")),
+        tabPanel("Pitch Usage", plotOutput("chart6", height = "600px", width = "900px")),
+        tabPanel("Pitch Chart", plotOutput("chart7", height = "600px", width = "900px")),
+        tabPanel("Summary Statistics", tableOutput("summary_table")),
+        tabPanel("Appearance Stats", tableOutput("appearance_stats_table")),
+        tabPanel("First Pitcher Report", tableOutput("pitcherReportTable")),
+        tabPanel("Second Pitcher Report", tableOutput("pitcherReportTable2")),
+        tabPanel("Third Pitcher Report", tableOutput("pitcherReportTable3"))
+      )
+    )
+  )
+)
+```
+
+
+```{r}
+server <- function(input, output, session) {
+  # Ensure the unique list of pitchers is updated when the app is launched
+  observe({
+    updateSelectInput(session, "pitcher", choices = unique(combined_data$Pitcher))
+  })
+  
+  # Update pitch types based on selected pitcher
+  observeEvent(input$pitcher, {
+    filtered_pitcher_data <- combined_data %>% filter(Pitcher == input$pitcher)
+    pitch_types <- unique(filtered_pitcher_data$TaggedPitchType)
+    updateSelectInput(session, "pitch_type", choices = c("All", pitch_types))
+  })
+  
+  # Reactive data filtered by the selected pitcher and pitch type
+  filtered_data <- reactive({
+    req(input$pitcher)  # Ensure input$pitcher is available
+    data <- combined_data %>% filter(Pitcher == input$pitcher)
+    
+    if (input$pitch_type != "All") {
+      data <- data %>% filter(TaggedPitchType == input$pitch_type)
+    }
+    
+     if (input$batter_side != "All") {
+      data <- data %>% filter(BatterSide == input$batter_side)
+     }
+    
+    if (!is.null(input$date_range)) {
+      data <- data %>% filter(Date >= input$date_range[1] & Date <= input$date_range[2])
+    }
+    
+        data <- data %>% mutate(
+      TaggedPitchType = case_when(
+        TaggedPitchType %in% c("FourSeamFastBall", "Fastball", "TwoSeamFastBall", "Sinker") ~ "Fastball",
+        TaggedPitchType %in% c("TwoSeamFastBall", "Sinker") ~ "Sinker",
+        TaggedPitchType %in% c("Slider") ~ "Slider",
+                TaggedPitchType %in% c("Cutter") ~ "Cutter",
+        TaggedPitchType %in% c("Curveball") ~ "Curveball",
+        TaggedPitchType %in% c("ChangeUp") ~ "ChangeUp",
+        TaggedPitchType %in% c("Splitter") ~ "Splitter",
+        TaggedPitchType %in% c("Undefined") ~ NA,
+        TRUE ~ TaggedPitchType
+      )
+    )
+    
+        data <- data %>% filter(!is.na(TaggedPitchType))
+    
+    data
+  })
+
+  
+appearance_stats <- reactive({
+    filtered_data <- filtered_data()  # Assuming filtered_data is reactive
+    
+    stats <- filtered_data %>%
+      group_by(Date) %>%
+      summarise(
+        TotalPitches = n(),
+        H = sum(PlayResult %in% c("Single", "Double", "Triple", "HomeRun")),
+        Double = sum(PlayResult == "Double", na.rm = TRUE),
+        Triple = sum(PlayResult == "Triple", na.rm = TRUE),
+        HR = sum(PlayResult == "HomeRun", na.rm = TRUE),
+                Walks = sum(KorBB == "Walk", na.rm = TRUE),
+        HBP = sum(PitchCall == "HitByPitch"),
+        Strikeouts = sum(KorBB == "Strikeout", na.rm = TRUE),
+      )
+    
+    stats
+  })
+  
+    summary_stats2 <- reactive({
+    req(input$pitcher)  # Ensure input$pitcher is available
+    filtered_data <- combined_data %>%
+      filter(Pitcher == input$pitcher) %>%
+      mutate(
+      TaggedPitchType = case_when(
+        TaggedPitchType %in% c("FourSeamFastBall", "Fastball", "TwoSeamFastBall", "Sinker") ~ "Fastball",
+                TaggedPitchType %in% c("TwoSeamFastBall", "Sinker") ~ "Sinker",
+        TaggedPitchType %in% c("Slider") ~ "Slider",
+                TaggedPitchType %in% c("Cutter") ~ "Cutter",
+        TaggedPitchType %in% c("Curveball") ~ "Curveball",
+        TaggedPitchType %in% c("ChangeUp") ~ "ChangeUp",
+        TaggedPitchType %in% c("Splitter") ~ "Splitter",
+        TaggedPitchType %in% c("Undefined") ~ NA,
+        TRUE ~ TaggedPitchType
+      )
+    ) %>%
+      filter(!is.na(TaggedPitchType))
+    
+    filtered_data %>%
+      group_by(TaggedPitchType) %>%
+      summarise(
+        AvgVelo = round(mean(RelSpeed, na.rm = TRUE), digits = 1),
+        MaxVelo = round(max(RelSpeed, na.rm = TRUE), digits = 1),
+        AvgSpin = round(mean(SpinRate, na.rm = TRUE), digits = 1),
+        MaxSpin = round(max(SpinRate, na.rm = TRUE), digits = 1),
+        VertBreakAvg = round(mean(InducedVertBreak, na.rm = TRUE), digits = 1),
+        HorzBreakAvg = round(mean(HorzBreak, na.rm = TRUE), digits = 1),
+        AvgExt = round(mean(Extension, na.rm = TRUE), digits = 1)
+      )
+  })
+  
+  freq2 <- reactive({
+    data <- filtered_data()
+    data %>%
+      group_by(TaggedPitchType) %>%
+      summarise(count = n()) %>%
+      mutate(usage_percent = count / sum(count) * 100)
+  })
+  
+  freq_left2 <- reactive({
+    data <- filtered_data() %>% filter(BatterSide %in% c("Left"))  # Adjust the filter condition as necessary
+    data %>%
+      group_by(TaggedPitchType) %>%
+      summarise(count = n()) %>%
+      mutate(usage_percent = count / sum(count) * 100)
+  })
+  
+  freq_right2 <- reactive({
+    data <- filtered_data() %>% filter(BatterSide %in% c("Right"))  # Adjust the filter condition as necessary
+    data %>%
+      group_by(TaggedPitchType) %>%
+      summarise(count = n()) %>%
+      mutate(usage_percent = count / sum(count) * 100)
+  })
+  
+pitcherreporttable1 <- reactive({
+  req(input$pitcher)  # Ensure input$pitcher is available
+  
+  filtered_data() %>%
+    filter(Pitcher == input$pitcher) %>%
+    group_by(Pitcher, Date) %>%
+    filter(!is.na(Date) & Date != "") %>%
+    summarise(
+      H = sum(PlayResult %in% c("Single", "Double", "Triple", "HomeRun")),
+      BB = sum(KorBB == "Walk"),
+      K = sum(KorBB == "Strikeout"),
+      total_first_pitches = sum(PitchofPA == 1),
+      first_pitch_strikes = sum(PitchofPA == 1 & PitchCall %in% c("FoulBallFieldable", "FoulBallNotFieldable", "InPlay", "StrikeCalled", "StrikeSwinging")),
+      `1PS%` = round(first_pitch_strikes / total_first_pitches * 100, 1)
+    ) %>%
+    ungroup()
+})
+
+  
+  # Reactive expression for summary statistics
+  summary_stats <- reactive({
+    combined_data %>%
+      group_by(Pitcher) %>%
+      summarise(
+        Total_H = sum(PlayResult %in% c("Single", "Double", "Triple", "HomeRun")),
+        Total_BB = sum(KorBB == "Walk"),
+        Total_K = sum(KorBB == "Strikeout"),
+        Total_first_pitches = sum(PitchofPA == 1),
+        Avg_first_pitch_strikes = round(mean(PitchofPA == 1 & PitchCall %in% c("FoulBallFieldable","FoulBallNotFieldable", "InPlay", "StrikeCalled", "StrikeSwinging")), 1)
+      )
+  })
+  
+pitcherreporttable2 <- reactive({
+  req(input$pitcher)  # Ensure input$pitcher is available
+  filtered_data() %>%
+    filter(Pitcher == input$pitcher) %>%
+    group_by(Pitcher, Date, TaggedPitchType) %>%
+    filter(!is.na(Date) & Date != "") %>%
+    summarise(
+      AvgVelo = round(mean(RelSpeed, na.rm = TRUE), 1),
+      MaxVelo = round(max(RelSpeed, na.rm = TRUE), 1),
+      AvgSpin = round(mean(SpinRate, na.rm = TRUE)),
+      MaxSpin = round(max(SpinRate, na.rm = TRUE)),
+      AvgEV = round(mean(ExitSpeed, na.rm = TRUE), 1),
+      IVB = round(mean(InducedVertBreak, na.rm = TRUE), 1),
+      HB = round(mean(HorzBreak, na.rm = TRUE), 1),
+      Ext = round(mean(Extension, na.rm = TRUE), 2),
+      VAA = round(mean(VertApprAngle, na.rm = TRUE), 2),
+      RelZ = round(mean(RelHeight, na.rm = TRUE), 2),
+      RelX = round(mean(RelSide, na.rm = TRUE), 2),
+      Count = n()
+    ) %>%
+    rename(
+      AvgVelo = AvgVelo,
+      MaxVelo = MaxVelo,
+      AvgSpin = AvgSpin,
+      MaxSpin = MaxSpin,
+      AvgEV = AvgEV,
+      Pitch = TaggedPitchType,
+      IVB = IVB,
+      HB = HB,
+      Ext = Ext,
+      VAA = VAA,
+      RelZ = RelZ,
+      RelX = RelX
+    )
+})
+
+  pitcher_data3 <- reactive({
+    filtered_data() %>%
+      mutate(
+        Strike = ifelse(PitchCall %in% c("FoulBallFieldable","FoulBallNotFieldable", "StrikeSwinging", "StrikeCalled", "InPlay"), 1, 0),
+        Whiff = ifelse(PitchCall == "StrikeSwinging", 1, 0),
+        Swing = ifelse(PitchCall %in% c("FoulBallFieldable","FoulBallNotFieldable", "StrikeSwinging", "InPlay"), 1, 0),
+        GroundBall = ifelse(TaggedHitType == "GroundBall", 1, 0),
+        TotalBallsInPlay = ifelse(TaggedHitType %in% c("GroundBall", "FlyBall", "Popup", "LineDrive"), 1, 0),
+        CSW = ifelse(PitchCall %in% c("StrikeSwinging", "StrikeCalled"), 1, 0),  
+        SpinRate = SpinRate, 
+        InStrikeZone = ifelse(PlateLocSide >= -.80 & PlateLocSide <= .80 & PlateLocHeight >= 1.20 & PlateLocHeight <= 3.2, 1, 0),
+        ZSwing = ifelse(InStrikeZone == 1 & Swing == 1, 1, 0),
+        Chase = ifelse(InStrikeZone == 0 & Swing == 1, 1, 0)
+      ) %>%
+      select(Pitcher, Date, TaggedPitchType, RelSpeed, ExitSpeed, InducedVertBreak, HorzBreak, Extension, RelHeight, RelSide, Swing, Whiff, Strike, GroundBall, TotalBallsInPlay, SpinRate, CSW, InStrikeZone, ZSwing, Chase)
+  })
+  
+  pitcherreporttable3 <- reactive({
+    req(input$pitcher)  # Ensure inputs are available
+    pitcher_data3() %>%
+      filter(Pitcher == input$pitcher) %>%
+      group_by(Pitcher, Date, TaggedPitchType) %>%
+      filter(!is.na(Date) & Date != "") %>%
+      summarise(
+        SwingPercentage = round(mean(Swing) * 100, 1),
+        WhiffPercentage = round(sum(Whiff) / sum(Swing, na.rm = TRUE) * 100, 1),
+        StrikePercentage = round(mean(Strike) * 100, 1),
+        CSWPercentage = round(sum(CSW) / n() * 100, 1),  
+        GroundBallPercentage = round(sum(GroundBall, na.rm = TRUE) / sum(TotalBallsInPlay, na.rm = TRUE) * 100, 1),
+        StrikeZonePercentage = round(sum(InStrikeZone, na.rm = TRUE) / n() * 100, 1),
+        ZSwingPercentage = round(sum(ZSwing, na.rm = TRUE) / sum(InStrikeZone, na.rm = TRUE) * 100, 1),
+        Percentage = round((n() / nrow(pitcher_data3())) * 100, 1),
+        ChasePercentage = round(sum(Chase, na.rm = TRUE) / sum(Swing, na.rm = TRUE) * 100, 1)
+      ) %>%
+      rename(Pitch = TaggedPitchType)
+  })
+  
+  pitcher_total_summary <- reactive({
+    pitcher_data3() %>%
+      filter(Pitcher == input$pitcher) %>%
+      group_by(Pitcher, Date) %>%
+      filter(!is.na(Date) & Date != "") %>%
+      summarise(
+        SwingPercentage = round(mean(Swing) * 100, 1),
+        WhiffPercentage = round(sum(Whiff) / sum(Swing, na.rm = TRUE) * 100, 1),
+        StrikePercentage = round(mean(Strike) * 100, 1),
+        CSWPercentage = round(sum(CSW) / n() * 100, 1),  
+        GroundBallPercentage = round(sum(GroundBall, na.rm = TRUE) / sum(TotalBallsInPlay, na.rm = TRUE) * 100, 1),
+        StrikeZonePercentage = round(sum(InStrikeZone, na.rm = TRUE) / n() * 100, 1),
+        ZSwingPercentage = round(sum(ZSwing, na.rm = TRUE) / sum(InStrikeZone, na.rm = TRUE) * 100, 1),
+        Percentage = round((n() / nrow(pitcher_data3())) * 100, 1),
+        ChasePercentage = round(sum(Chase, na.rm = TRUE) / sum(Swing, na.rm = TRUE) * 100, 1)
+      ) %>%
+      mutate(Pitch = "Overall")
+  })
+  
+  combined_report <- reactive({
+    bind_rows(pitcherreporttable3(), pitcher_total_summary()) %>%
+      mutate(sort_key = ifelse(Pitch == "Overall", 1, 0)) %>%
+      arrange(Pitcher, Date, sort_key, Pitch) %>%
+      select(-sort_key)
+  })
+  
+  # Plot 1: Heat Map
+  output$chart1 <- renderPlot({
+    ggplot(filtered_data(), mapping = aes(x = PlateLocSide, y = PlateLocHeight)) +
+      stat_density2d_filled(h = .80, contour_var = "ndensity", n = 100) + 
+      scale_fill_manual(values = colors, aesthetics = "fill", "color") +
+      geom_segment(aes(x = left, y = bottom, xend = right, yend = bottom)) + 
+      geom_segment(aes(x = left, y = top, xend = right, yend = top)) + 
+      geom_segment(aes(x = left, y = bottom, xend = left, yend = top)) + 
+      geom_segment(aes(x = right, y = bottom, xend = right, yend = top)) + 
+      geom_segment(aes(x = left, y = bottom + Height, xend = right, yend = bottom + Height)) + 
+      geom_segment(aes(x = left, y = top - Height, xend = right, yend = top - Height)) +
+      geom_segment(aes(x = left + Width, y = bottom, xend = left + Width, yend = top)) +
+      geom_segment(aes(x = right - Width, y = bottom, xend = right - Width, yend = top)) +
+      geom_segment(aes(x = left, y = 0, xend = right, yend = 0)) +
+      geom_segment(aes(x = left, y = 0, xend = left, yend = 4.25 / 12)) +
+      geom_segment(aes(x = left, y = 4.25 / 12, xend = 0, yend = 8.5 / 12)) +
+      geom_segment(aes(x = right, y = 4.25 / 12, xend = right, yend = 0)) +
+      geom_segment(aes(x = 0, y = 8.5 / 12, xend = right, yend = 4.25 / 12)) +
+      xlim(-3, 3) + ylim(0, 5) + ggtitle("") +
+      theme(legend.position = "none",
+            plot.title = element_text(color = 'black', size = 30, face = "bold"),
+            axis.title.x = element_blank(),
+            axis.title.y = element_blank(),
+            panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+            panel.background = element_blank(),
+            panel.border = element_rect(color = 'black', size = 1.5, fill = NA),
+          strip.text = element_text(size = 15, color = 'black')) +
+      facet_wrap(~TaggedPitchType, ncol = 2)
+  })
+  
+  # Plot 2: Hit Chart
+  output$chart2 <- renderPlot({
+    ggplot(filtered_data(), aes(x = PlateLocSide, y = PlateLocHeight, color = PlayResult, shape = PitchCategory)) + 
+      geom_point(alpha = 1, size = 3) +
+      geom_segment(aes(x = left, y = bottom, xend = right, yend = bottom), color = "black") + 
+      geom_segment(aes(x = left, y = top, xend = right, yend = top), color = "black") + 
+      geom_segment(aes(x = left, y = bottom, xend = left, yend = top), color = "black") + 
+      geom_segment(aes(x = right, y = bottom, xend = right, yend = top), color = "black") + 
+      geom_segment(aes(x = left, y = bottom + Height, xend = right, yend = bottom + Height), color = "black") + 
+      geom_segment(aes(x = left, y = top - Height, xend = right, yend = top - Height), color = "black") +
+      geom_segment(aes(x = left + Width, y = bottom, xend = left + Width, yend = top), color = "black") +
+      geom_segment(aes(x = right - Width, y = bottom, xend = right - Width, yend = top), color = "black") +
+      geom_segment(aes(x = left, y = 0, xend = right, yend = 0), color = "black") +
+      geom_segment(aes(x = left, y = 0, xend = left, yend = 4.25 / 12), color = "black") +
+      geom_segment(aes(x = left, y = 4.25 / 12, xend = 0, yend = 8.5 / 12), color = "black") +
+      geom_segment(aes(x = right, y = 4.25 / 12, xend = right, yend = 0), color = "black") +
+      geom_segment(aes(x = 0, y = 8.5 / 12, xend = right, yend = 4.25 / 12), color = "black") +
+      xlim(-3, 3) + ylim(0, 5) + 
+      scale_color_manual(name = "Hit Type", values = c("Single" = "blue", "Double" = "red", "HomeRun" = "green")) +
+      ggtitle("Hit Chart") +
+      theme(legend.position = "right",
+            legend.text = element_text(size = 15),
+            plot.title = element_text(color = 'black', size = 15, face = "bold"),
+            axis.title.x = element_blank(),
+            axis.title.y = element_blank(),
+            panel.grid.major = element_blank(), 
+            panel.grid.minor = element_blank(),
+            panel.background = element_blank(),
+            panel.border = element_rect(color = 'black', size = 1.5, fill = NA))
+  })
+  
+  # Plot 3: Pitch Breaks
+  output$chart3 <- renderPlot({
+    ggplot(filtered_data(), aes(x = HorzBreak, y = InducedVertBreak, color = TaggedPitchType)) +
+      geom_vline(xintercept = 0) +
+      geom_hline(yintercept = 0) +
+      geom_point(size = 2, alpha = 0.65) +
+      scale_x_continuous(limits = c(-25, 25), breaks = seq(-20, 20, 5), labels = scales::number_format(suffix = "\"")) +
+      scale_y_continuous(limits = c(-25, 25), breaks = seq(-20, 20, 5), labels = scales::number_format(suffix = "\"")) +
+      coord_equal() +
+      scale_color_manual(values = pitch_colors_ccbl) + 
+      theme(legend.position = "bottom",
+      legend.title = element_text(size = 14),  
+      legend.text = element_text(size = 12),   
+      axis.title = element_text(size = 14),    
+      axis.text = element_text(size = 12)      ) +
+      labs(title = "Pitch Breaks",
+           caption = "Data: Baseball Savant via baseballr", 
+           x = "Horizontal Break",
+           y = "Induced Vertical Break")
+  })
+  
+    # Plot 4: Release Angle
+  output$chart4 <- renderPlot({
+   ggplot(filtered_data(), aes(x = -RelSide, y = RelHeight, color = TaggedPitchType)) +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) +
+  geom_point(size = 1.75, alpha = 0.25) +
+  scale_color_manual(values = pitch_colors_ccbl) +
+  scale_x_continuous(limits = c(-10,10),
+                              breaks = seq(-5,5, 2.5),
+                              labels = scales::number_format(suffix = "\"")) +
+  scale_y_continuous(limits = c(-10,10),
+                              breaks = seq(-5,5, 2.5),
+                              labels = scales::number_format(suffix = "\"")) +
+  coord_equal() +
+       theme(
+      legend.position = "right",  # You can adjust the position as needed
+      legend.title = element_text(size = 14),  # Legend title size
+      legend.text = element_text(size = 12),   # Legend text size
+      axis.title = element_text(size = 14),    # Axis title size
+      axis.text = element_text(size = 12)      # Axis text size
+    ) +
+  labs(
+                x = "Horizontal Release Point",
+                y = "Vertical Release Point",
+                color = "Pitch")
+  })
+  
+   # Plot 5: Pitch Velos
+output$chart5 <- renderPlot({
+  ggplot(filtered_data(), aes(x = RelSpeed, y = TaggedPitchType, fill = TaggedPitchType, color = TaggedPitchType)) +
+    geom_violin(scale = "width") +
+    labs(x = "Velocity", y = NULL) +
+       scale_fill_manual(values = pitch_colors_ccbl) +       # Use custom colors for fill
+    scale_color_manual(values = pitch_colors_ccbl) + 
+    theme_minimal() +  # Adjust legend title
+    theme(axis.text = element_text(size = 16),      # Increase axis text size
+          legend.text = element_text(size = 16),
+          axis.title.x = element_text(size = 16))    # Increase legend text size
+})
+  
+  output$chart6 <- renderPlot({
+    vs_all2 <- ggplot(freq2(), aes(x = "", y = usage_percent, fill = TaggedPitchType)) +
+      geom_bar(stat = "identity", width = 1) +  
+      coord_polar("y", start = 0) +  
+      theme_void() +  
+      scale_fill_manual(values = pitch_colors_ccbl) +  
+      labs(title = "vs All") +
+      theme(plot.title = element_text(size = 20, face = "bold"),  
+            legend.position = "bottom",
+          legend.text = element_text(size = 16)) +
+      guides(fill = guide_legend(title = "")) + 
+      geom_text(aes(label = paste0(round(usage_percent, 1), "%")), 
+                position = position_stack(vjust = 0.5), 
+                size = 5, color = "black")
+    
+    vs_left2 <- ggplot(freq_left2(), aes(x = "", y = usage_percent, fill = TaggedPitchType)) +
+      geom_bar(stat = "identity", width = 1) +  
+      coord_polar("y", start = 0) +  
+      theme_void() +  
+     scale_fill_manual(values = pitch_colors_ccbl) +  
+      labs(title = "vs LHH") +
+      theme(plot.title = element_text(size = 20, face = "bold"),
+            legend.position = "none") +
+      geom_text(aes(label = paste0(round(usage_percent, 1), "%")), 
+                position = position_stack(vjust = 0.5), 
+                size = 5, color = "black")
+    
+    vs_right2 <- ggplot(freq_right2(), aes(x = "", y = usage_percent, fill = TaggedPitchType)) +
+      geom_bar(stat = "identity", width = 1) +  
+      coord_polar("y", start = 0) +  
+      theme_void() +  
+      scale_fill_manual(values = pitch_colors_ccbl) +  
+           labs(title = "vs RHH") +
+      theme(plot.title = element_text(size = 20, face = "bold"),
+            legend.position = "none") +
+      geom_text(aes(label = paste0(round(usage_percent, 1), "%")), 
+                position = position_stack(vjust = 0.5), 
+                size = 5, color = "black")
+    
+    grid.arrange(vs_left2, vs_all2, vs_right2, ncol = 3)
+  })
+  
+      # Plot 7: Pitch Chart
+  output$chart7 <- renderPlot({
+ggplot(filtered_data(), mapping = aes(x = PlateLocSide, y = PlateLocHeight)) + 
+  geom_point(aes(color = TaggedPitchType), size = 3.5, alpha = .95) +
+  geom_segment(x = left, y = bottom, xend = right, yend = bottom) + 
+  geom_segment(x = left, y = top, xend = right, yend = top) + 
+  geom_segment(x = left, y = bottom, xend = left, yend = top) + 
+  geom_segment(x = right, y = bottom, xend = right, yend = top) + 
+  geom_segment(x = left, y = bottom + Height, xend = right, yend = bottom + Height) + 
+  geom_segment(x = left, y = top - Height, xend = right, yend = top - Height) +
+  geom_segment(x = left + Width, y = bottom, xend = left + Width, yend = top) +
+  geom_segment(x = right - Width, y = bottom, xend = right - Width, yend = top) +
+  geom_segment(x = left, y = 0, xend = right, yend = 0) +
+  geom_segment(x = left, y = 0, xend = left, yend = 4.25/12) +
+  geom_segment(x = left, y = 4.25/12, xend = 0, yend = 8.5/12) +
+  geom_segment(x = right, y = 4.25/12, xend = right, yend = 0) +
+  geom_segment(x = 0, y = 8.5/12, xend = right, yend = 4.25/12) +
+  xlim(-3, 3) + ylim(0, 5) + 
+  ggtitle("Pitch Chart") +
+  scale_color_manual(values = pitch_colors_ccbl) +
+  labs(color = "Pitch") +
+  theme(
+    legend.text = element_text(size = 17),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.background = element_blank(),
+    panel.border = element_rect(color = "black", size = 1.5, fill = NA)
+  )
+  })
+  
+  output$summary_table <- renderTable({
+  summary_stats2()
+})
+  
+  output$appearance_stats_table <- renderTable({
+    appearance_stats()
+  })
+  
+
+  output$pitcherReportTable <- renderTable({
+    pitcherreporttable1()
+  })
+  
+    output$pitcherReportTable2 <- renderTable({
+    pitcherreporttable2()
+  })
+    
+    output$pitcherReportTable3 <- renderTable({
+    combined_report()
+  })
+    
+}
+  
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
