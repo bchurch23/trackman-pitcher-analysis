@@ -6,6 +6,7 @@ output: html_document
 ---
 
 ```{r}
+# Clear environment and set the working directory
 rm(list=ls())
 setwd("/Users/benchurch/Downloads/Trackman CSVs")
 
@@ -22,6 +23,7 @@ library(lubridate)
 ```
 
 ```{r}
+# Downloading all trackman csvs from the season
 june_16_1 <- read.csv("6_16_1.csv")
 june_16_2 <- read.csv("6_16_2.csv")
 june_16_3 <- read.csv("6_16_3.csv")
@@ -189,7 +191,7 @@ write.csv(combined_data, "all_ccbl_data.csv", row.names = FALSE)
 unique(combined_data$PitchCall)
 ```
 
-
+# Clean up the TaggedPitchTypes and combine some
 ```{r}
 combined_data <- combined_data %>%
   mutate(
@@ -222,6 +224,7 @@ combined_data <- combined_data %>%
 
 ```
 
+# Set colors to use in later plots
 ```{r}
 pitch_colors_ccbl <- c(
                   "Sinker" = "cyan",
@@ -233,7 +236,7 @@ pitch_colors_ccbl <- c(
                   "Splitter" = "yellow")
 ```
 
-
+# Set parameters for strike zone
 ```{r}
 left <- -.947
 right <- .947
@@ -247,7 +250,7 @@ colors <- colorRampPalette(c("white", "blue", "white", "red"))(10)
 ```
 
 
-
+# Set up the groundwork and ui for app
 ```{r}
 ui <- fluidPage(
   titlePanel("Pitcher Analysis"),
@@ -278,7 +281,7 @@ ui <- fluidPage(
 )
 ```
 
-
+# Add all calulations and plots into the app
 ```{r}
 server <- function(input, output, session) {
   # Ensure the unique list of pitchers is updated when the app is launched
